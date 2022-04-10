@@ -89,9 +89,9 @@ async def dig_rating(message: types.Message):
     users.sort(reverse=True)
 
     tb = texttable.Texttable()
-    tb.add_row(["Имя", "Алмазы", "Уровень"])
+    tb.add_row(["Имя", "💎", "Ур"])
 
-    for i in users:
+    for i in users[:20]:
         tb.add_row([i[1], i[0], i[3]])
     await message.answer("<pre>" + tb.draw() + "</pre>")
     # <pre></pre>

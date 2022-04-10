@@ -21,17 +21,17 @@ class OrderName(StatesGroup):
 
 
 async def name_start(message: types.Message):
-    await message.answer("Введите имя для рейтинга:\n(не больше 18 символов, неприемлимое имя будет заменено)", reply_markup=cancel)
+    await message.answer("Введите имя для рейтинга:\n(не больше 14 символов, неприемлимое имя будет заменено)", reply_markup=cancel)
     await OrderName.waiting_name.set()
 
 
 async def write_name(message: types.Message, state: FSMContext):
-    if len(message.text) < 19:
+    if len(message.text) < 15:
         await state.update_data(name=message.text)
         await message.answer(text="Установить имя '{}'".format(message.text), reply_markup=confirm)
         await OrderName.waiting_submit.set()
     else:
-        await message.answer("Ваше имя больше 18 символов\n"
+        await message.answer("Ваше имя больше 14 символов\n"
                              "Введите имя для рейтинга:\n(не больше 18 символов, неприемлимое имя будет заменено)",
                              reply_markup=cancel)
 
